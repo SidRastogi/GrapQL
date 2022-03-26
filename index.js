@@ -1,17 +1,11 @@
 import { createServer } from '@graphql-yoga/node';
+import db from './src/db';
 
+import schema from './src/schema';
 const server = createServer({
-  schema: {
-    typeDefs: /* GraphQL */ `
-      type Query {
-        helloWorld: String
-      }
-    `,
-    resolvers: {
-      Query: {
-        helloWorld: () => 'Hello Hello Hello',
-      },
-    },
+  schema,
+  context: {
+    db,
   },
 });
 
